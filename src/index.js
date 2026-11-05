@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { argv } from "node:process";
 const file_path = "./tasks.json";
 
 const taskCompletionStatus = {
@@ -93,4 +94,31 @@ function filterTaskByStatus(status) {
   filteredTask.map((task) => {
     console.log(`${task._id} | ${task.text} | ${task.status}`);
   });
+}
+
+const argv = process.argv;
+
+switch (argv[2]) {
+  case "add":
+    addTask(argv[3]);
+    break;
+
+  case "list":
+    if (argv[3]) {
+      filterTaskByStatus(argv[3]);
+    } else {
+      listAllTask();
+    }
+    break;
+
+  case "update":
+    updateTask(Number(argv[3]), argv[4], argv[5]);
+    break;
+
+  case "delete":
+    deleteTask(Number(argv[3]));
+    break;
+
+  default:
+    console.log("Invalid command");
 }
