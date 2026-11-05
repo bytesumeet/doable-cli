@@ -2,7 +2,7 @@
 import fs from "node:fs";
 import { argv } from "node:process";
 
-const file_path = "./tasks.json";
+const file_path = "tasks.json";
 
 const taskCompletionStatus = {
   pending: "pending",
